@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ma vie en résumé</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --fg:#eef2ff;
+      --accent:#7c5cff;
+      --accent-2:#00e5a8;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--fg);
+      background:
+        radial-gradient(1200px 800px at 100% -10%, rgba(124,92,255,.15), transparent 60%),
+        radial-gradient(800px 600px at -10% 110%, rgba(0,229,168,.1), transparent 60%),
+        var(--bg);
+    }
+    .card{
+      width:min(90vw,680px);
+      background:rgba(17,24,39,.6);
+      backdrop-filter:saturate(140%) blur(8px);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:28px;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(22px,3.5vw,32px);
+      letter-spacing:.2px;
+    }
+    p{margin:0 0 18px;color:#cbd5e1}
+    a.button{
+      display:inline-block;
+      padding:12px 18px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      border:1px solid transparent;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:#0b1220;
+      transition:transform .08s ease, box-shadow .2s ease, filter .2s ease;
+      box-shadow:0 8px 20px rgba(124,92,255,.35);
+    }
+    a.button:focus-visible{outline:3px solid #fff9; outline-offset:3px}
+    a.button:hover{filter:brightness(1.05)}
+    a.button:active{transform:translateY(1px)}
+    #message{
+      display:none;
+      margin-top:16px;
+      padding:14px 16px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      font-size:clamp(18px,3vw,22px);
+      font-weight:700;
+    }
+    /* CSS-only fallback */
+    #message:target{display:block}
+    footer{margin-top:14px;font-size:12px;color:#94a3b8}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Petit message discret 👀</h1>
+    <p>Clique sur le bouton ci-dessous…</p>
+
+    <a href="#message" class="button" id="trigger">Ma vie en résumé</a>
+
+    <div id="message" role="status" aria-live="polite">Arrête de m’espionner&nbsp;!</div>
+
+    <footer>CSS-only fallback inclus. JavaScript améliore juste l’expérience.</footer>
+  </main>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('trigger');
+      const msg = document.getElementById('message');
+      if (!btn || !msg) return;
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (msg.style.display !== 'block') {
+          msg.style.display = 'block';
+          msg.animate([{opacity:0, transform:'translateY(6px)'},{opacity:1, transform:'translateY(0)'}], {duration:200, easing:'ease-out'});
+          msg.focus?.();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
