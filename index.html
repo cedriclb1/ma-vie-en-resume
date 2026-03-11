@@ -17,7 +17,7 @@
       min-height:100svh;
       display:grid;
       place-items:center;
-      font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
       color:var(--fg);
       background:
         radial-gradient(1200px 800px at 100% -10%, rgba(124,92,255,.15), transparent 60%),
@@ -52,20 +52,18 @@
       transition:transform .08s ease, box-shadow .2s ease, filter .2s ease;
       box-shadow:0 8px 20px rgba(124,92,255,.35);
     }
-    a.button:focus-visible{outline:3px solid #fff9; outline-offset:3px}
     a.button:hover{filter:brightness(1.05)}
     a.button:active{transform:translateY(1px)}
     #message{
       display:none;
       margin-top:16px;
-      padding:14px 16px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.06);
-      font-size:clamp(18px,3vw,22px);
-      font-weight:700;
     }
-    #message:target{display:block}
+    #message img{
+      width:100%;
+      max-width:400px;
+      border-radius:12px;
+      box-shadow:0 8px 24px rgba(0,0,0,.5);
+    }
     footer{margin-top:14px;font-size:12px;color:#94a3b8}
   </style>
 </head>
@@ -74,9 +72,11 @@
     <h1>Petit message discret 👀</h1>
     <p>Clique sur le bouton ci-dessous…</p>
 
-    <a href="#message" class="button" id="trigger">Clique sur moi</a>
+    <a href="#" class="button" id="trigger">Clique sur moi</a>
 
-    <div id="message" role="status" aria-live="polite">Arrête de m'espionner CHACAL&nbsp;!</div>
+    <div id="message" role="status">
+      <img src="gorille.jpg" alt="Gorille qui fait un doigt" />
+    </div>
 
     <footer>CSS-only fallback inclus. JavaScript améliore juste l'expérience.</footer>
   </main>
@@ -92,7 +92,6 @@
         if (msg.style.display !== 'block') {
           msg.style.display = 'block';
           msg.animate([{opacity:0, transform:'translateY(6px)'},{opacity:1, transform:'translateY(0)'}], {duration:200, easing:'ease-out'});
-          msg.focus?.();
         }
       });
     })();
